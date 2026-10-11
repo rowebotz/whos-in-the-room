@@ -1,0 +1,109 @@
+/* Phone directory and sharing. Desktop retains the original room map. */
+.bar, .bar *, #directory, #directory *, #panel, #panel *, #share-dialog, #share-dialog * { box-sizing:border-box }
+#share .lbl { display:inline }
+.btn { flex-shrink:0 }
+.bar .brand { flex:1; min-width:140px }
+.bar .brand b { white-space:nowrap }
+.bar { gap:10px }
+.bar .search input { width:clamp(180px,22vw,340px) }
+#directory { display:none }
+#share-dialog { width:min(620px,calc(100vw - 24px)); max-width:none; max-height:calc(100dvh - 24px); overflow-y:auto; overscroll-behavior:contain }
+.share-head { display:flex; align-items:center; justify-content:space-between; gap:16px }
+.share-head h2 { margin:0 }
+.share-qr { display:block; width:min(100%,380px); height:auto; aspect-ratio:1; margin:20px auto; background:white; border-radius:12px }
+.share-url { display:block; text-align:center; overflow-wrap:anywhere; font-size:1rem; margin:12px 0 20px }
+.share-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:10px }
+.share-actions a { text-decoration:none }
+.share-status { min-height:1.5em; text-align:center; margin-bottom:0 }
+#share-dialog .dlg { padding:24px }
+#panel { max-width:100vw; overflow-x:hidden }
+#panel .pin { overflow-wrap:anywhere }
+#panel .ptools { padding-top:calc(env(safe-area-inset-top,0px) + 10px) }
+#panel .face { max-width:100%; white-space:normal; text-align:left }
+#panel .face img { flex:none }
+#panel .big dd { min-width:0; overflow-wrap:anywhere }
+#panel .news a { min-width:0; overflow-wrap:anywhere }
+#panel .who h2 { overflow-wrap:anywhere }
+@media (max-width:1450px) and (min-width:961px) {
+  .bar .btn .lbl { display:none }
+  .bar #share .lbl { display:inline }
+  .bar .btn { padding:0 12px }
+}
+@media (max-width:1100px) and (min-width:961px) {
+  .bar .brand span { display:none }
+  .bar .brand b { font-size:1.25rem }
+  .bar .search input { width:190px }
+}
+@media (max-width:960px) {
+  html,body { height:100%; overflow:hidden }
+  .bar { display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:10px; padding:calc(env(safe-area-inset-top,0px) + 10px) 14px 12px; background:var(--bg); border-bottom:1px solid var(--line) }
+  .bar .brand { min-width:0; margin:0 }
+  .bar .brand b { font-size:1.35rem; white-space:nowrap }
+  .bar .brand span { display:none }
+  .bar #share { grid-column:2; grid-row:1; padding:0 12px; gap:6px; min-width:48px }
+  .bar #theme { grid-column:3; grid-row:1; width:44px; min-width:44px; padding:0; justify-content:center }
+  .bar #share .lbl { font-size:.88rem }
+  .bar .search { grid-column:1/-1; grid-row:2; min-width:0 }
+  .bar .search input { width:100%; min-width:0; height:48px; padding-right:48px; font-size:16px }
+  .bar #spin,.bar #net,.bar #home,.bar #about { display:none }
+  #stage,#legend,#hint { display:none!important }
+  #directory { display:block; position:fixed; inset:var(--mobile-header,128px) 0 0; overflow-y:auto; overflow-x:hidden; overscroll-behavior-y:contain; -webkit-overflow-scrolling:touch; touch-action:pan-y pinch-zoom; padding:20px 16px calc(env(safe-area-inset-bottom,0px) + 32px); background:var(--bg); font-size:1rem }
+  .directory-intro .eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:.13em; font-size:.68rem; font-weight:600; margin:0 0 6px }
+  .directory-intro h1 { font:600 2.1rem/1.05 var(--display); margin:0 0 10px }
+  .directory-intro p { color:var(--muted); line-height:1.5; margin:0 0 16px }
+  .directory-summary { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:18px 0 12px }
+  .directory-summary p { color:var(--muted); font-size:.85rem; margin:0 }
+  #mobile-pick { font-size:.85rem; min-height:44px; padding:0 14px }
+  .directory-filter label { display:block; color:var(--muted); font-size:.8rem; margin-bottom:6px }
+  .directory-filter select { width:100%; min-height:48px; font:inherit; font-size:16px; padding:10px 12px; border:1px solid var(--line); border-radius:12px; color:var(--fg); background:var(--surface) }
+  .people-list { display:grid; gap:10px }
+  .person-card { display:grid; grid-template-columns:56px minmax(0,1fr) 14px; align-items:center; gap:12px; padding:14px 12px; width:100%; background:var(--surface); border:1px solid var(--line); border-radius:16px; text-align:left; cursor:pointer; color:var(--fg); min-height:88px }
+  .person-card:active { background:var(--surface2) }
+  .person-card img { width:56px; height:56px; border-radius:50%; object-fit:cover; border:2px solid var(--cc) }
+  .person-card b { display:block; font-size:1rem; line-height:1.3; font-weight:600 }
+  .person-card .org-name { display:block; font-size:.87rem; color:var(--blue); line-height:1.35; margin-top:3px }
+  .person-card .role { display:block; font-size:.78rem; color:var(--muted); line-height:1.4; margin-top:3px }
+  .person-card .chevron { color:var(--dim) }
+  .empty-results { padding:22px 12px; text-align:center; color:var(--muted) }
+  .directory-footer { margin-top:24px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:.8rem }
+  .directory-footer button { margin-top:8px; font-size:.85rem }
+  #panel { width:100%; height:100dvh; bottom:auto; font-size:calc(1rem * var(--ui)); touch-action:pan-y pinch-zoom }
+  #panel .ptools { gap:6px; padding-right:12px; padding-left:12px; align-items:center }
+  #panel .ptools .pos { display:none }
+  #panel .ptools .btn { min-width:42px; min-height:44px; padding:0 10px; justify-content:center }
+  #panel #close { order:-1; margin-right:auto; gap:5px; padding:0 10px }
+  #panel #close .lbl { display:inline; font-size:.9rem }
+  #panel #close svg { width:16px }
+  #panel .pin { padding:24px 18px calc(env(safe-area-inset-bottom,0px) + 36px) }
+  #panel .who { grid-template-columns:72px minmax(0,1fr); gap:16px; align-items:start }
+  #panel .who .ph { width:72px; height:72px; padding:3px }
+  #panel .who h2 { font-size:calc(2rem * var(--ui)); line-height:1.08 }
+  #panel .who .t { font-size:.92em; line-height:1.5 }
+  #panel .chips { gap:6px }
+  #panel .chip { padding:5px 8px; font-size:.68em }
+  #panel .headline { font-size:1.3em; margin-top:22px }
+  #panel .scan { padding:14px; font-size:.76em }
+  #panel .sec { margin-top:28px }
+  #panel .sec>h3 { font-size:.72em; letter-spacing:.1em }
+  #panel .org h4 { font-size:1.75em }
+  #panel .big .v { font-size:2.2em }
+  #panel .org { gap:18px }
+  #panel .play,#panel .card,#panel .agent,#panel .big { padding:18px }
+  #panel .news li { display:block }
+  #panel .news time { display:block; margin-bottom:4px }
+  #panel .face { font-size:.85em; padding-right:12px }
+  #share-dialog .dlg { padding:20px }
+  #share-dialog h2 { font-size:1.85rem }
+  #share-dialog .share-head { gap:8px }
+  .share-qr { width:min(100%,320px); margin:16px auto }
+  .share-actions .btn { flex:1; justify-content:center; font-size:.9rem }
+  .share-url { font-size:.85rem }
+}
+@media (max-width:350px) {
+  .bar { padding-left:10px; padding-right:10px; gap:6px }
+  .bar .brand b { font-size:1.14rem }
+  .bar #share { padding:0 9px }
+  .bar #share svg { display:none }
+  #panel .ptools { padding-right:8px; padding-left:8px; gap:4px }
+  #panel .ptools .btn { min-width:40px; padding:0 8px }
+}

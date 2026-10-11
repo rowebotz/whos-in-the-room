@@ -2,7 +2,11 @@
 
 Interactive presentation for Transformation 250.
 
-The supplied HTML is preserved unchanged in `public/index.html`, including its embedded images, styles, and interactions. Google Fonts and GSAP are loaded from external CDNs.
+The presentation is in `public/index.html`, including its embedded attendee data and images. Google Fonts and GSAP are loaded from external CDNs. The original attendee research remains unchanged.
+
+Phones and smaller tablets use a searchable, scrollable attendee directory with category filters. Desktop keeps the room map. Profile controls support keyboard navigation, readable text sizing, and returning to the directory with the browser Back button.
+
+The QR button opens sharing controls. `public/share-qr.svg` and `public/share-qr.png` point directly to https://whos-in-the-room.replit.app/ and are served locally with the site. The PNG can be downloaded for presentation slides. No external QR service or runtime QR library is required.
 
 ## Preview
 
