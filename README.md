@@ -6,7 +6,7 @@ The presentation is in `public/index.html`, including its embedded attendee data
 
 Phones and smaller tablets use a searchable, scrollable attendee directory with category filters. Desktop keeps the room map. Profile controls support keyboard navigation, readable text sizing, and returning to the directory with the browser Back button.
 
-The QR button opens sharing controls. `public/share-qr.svg` and `public/share-qr.png` point directly to https://whos-in-the-room.replit.app/ and are served locally with the site. The PNG can be downloaded for presentation slides. No external QR service or runtime QR library is required.
+The QR button opens sharing controls. `public/share-qr.svg` and `public/share-qr.png` point directly to https://room.digitalrowe.com/ and are served locally with the site. The PNG can be downloaded for presentation slides. No external QR service or runtime QR library is required.
 
 ## Preview
 

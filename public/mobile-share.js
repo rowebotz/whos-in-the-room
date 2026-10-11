@@ -71,7 +71,7 @@ window.initRoomExperience = function ({people, orgs, clusters, openPerson, panel
   });
   $('#copy-link').addEventListener('click', async () => {
     try {
-      await navigator.clipboard.writeText('https://whos-in-the-room.replit.app/');
+      await navigator.clipboard.writeText('https://room.digitalrowe.com/');
       $('#share-status').textContent = 'Link copied.';
     } catch (_) {
       const range = document.createRange(); range.selectNodeContents($('#share-url'));
