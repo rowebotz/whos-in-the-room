@@ -10,6 +10,8 @@ The QR button opens sharing controls. `public/share-qr.svg` and `public/share-qr
 
 ## Preview
 
+The Resources menu includes a download of Stephen Rowe's 15-slide “The Future of Fundraising” presentation (`public/the-future-of-fundraising.pdf`) and a meeting inquiry email to stephen@digitalrowe.com. The email link opens a draft in the visitor's email app; it does not send a message or book a time automatically. On mobile, theme switching is also available in Resources.
+
 Run `python3 -m http.server 3000 --bind 0.0.0.0 --directory public` and open port 3000.
 
 ## Replit

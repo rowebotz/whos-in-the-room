@@ -54,6 +54,15 @@ window.initRoomExperience = function ({people, orgs, clusters, openPerson, panel
   phone.addEventListener('change', () => { filter(); sync(); });
   fullscreenPanel.addEventListener('change', sync);
   const shareDialog = $('#share-dialog');
+  const resourcesDialog = $('#resources-dialog');
+  const themeLabel = () => { $('#resources-theme').textContent = $('#theme').getAttribute('aria-label'); };
+  $('#resources').addEventListener('click', () => { themeLabel(); resourcesDialog.showModal(); });
+  $('#resources-close').addEventListener('click', () => resourcesDialog.close());
+  $('#resources-theme').addEventListener('click', () => { $('#theme').click(); themeLabel(); });
+  resourcesDialog.addEventListener('click', event => {
+    const r = resourcesDialog.getBoundingClientRect();
+    if (event.target === resourcesDialog && (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom)) resourcesDialog.close();
+  });
   $('#share').addEventListener('click', () => { $('#share-status').textContent = ''; shareDialog.showModal(); });
   $('#share-close').addEventListener('click', () => shareDialog.close());
   shareDialog.addEventListener('click', event => {
@@ -80,7 +89,7 @@ window.initRoomExperience = function ({people, orgs, clusters, openPerson, panel
   filter(); sync();
   return {
     isPhone: () => phone.matches,
-    modalOpen: () => shareDialog.open,
+    modalOpen: () => shareDialog.open || resourcesDialog.open,
     filter,
     panelOpened(fresh) { if (fresh) returnFocus = document.activeElement; sync(); },
     panelClosed() {
